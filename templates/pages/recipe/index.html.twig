@@ -18,13 +18,15 @@
             <tr class="table-secondary">
                 <th scope="col">Numéro</th>
                 <th scope="col">Name</th>
-                <th scope="col">Time</th>
-                <th scope="col">NbPersons</th>
+                {# <th scope="col">Time</th> #}
+                {# <th scope="col">NbPersons</th> #}
                 <th scope="col">Difficulty</th>
-                <th scope="col">Description</th>
+                {# <th scope="col">Description</th> #}
                 <th scope="col">Price</th>
-                <th scope="col">IsFavorite</th>
+                {# <th scope="col">Favoris</th> #}
                 <th scope="col">CreatedAt</th>
+                <th scope="col">Édition</th>
+                <th scope="col">Suppression</th>
             </tr>
         </thread>
         <tbody>
@@ -32,20 +34,19 @@
             <tr class="table-dark">
                 <th scope="row">{{ recipe.id }}</th>
                 <td>{{ recipe.name }}</td>
-                <td>{{ recipe.time ?? '?'}}</td>
-                <td>{{ recipe.nbPersons ?? 'Non renseigné' }}</td>
+                {# <td>{{ recipe.time ?? '?'}}</td> #}
+                {# <td>{{ recipe.nbPersons ?? 'Non renseigné' }}</td> #}
                 <td>{{ recipe.difficulty ?? 'Non renseigné' }}</td>
-                <td>{{ recipe.description }}</td>
+                {# <td>{{ recipe.description }}</td> #}
                 <td>{{ recipe.price ?? '?'}}</td>
-                <td>{{ recipe.isFavorite ? recipe.isFavorite : '0'}}</td>
+                {# <td>{{ recipe.isFavorite ? "Oui" : 'Non'}}</td> #}
                 <td>{{ recipe.createdAt|date('d/m/y') }}</td>
                 <td>
                     <a href="{{ path('recipe_edit', { id: recipe.id}) }}" class="btn btn-info">Modifier</a>
                 </td>
-                {# <td>
-                    <a href="{{ path('recipe_remove', { id: ingredient.id}) }}"
-                        class="btn btn-warning">Supprimer</a>
-                </td> #}
+                <td>
+                    <a href="{{ path('recipe_remove', { id: recipe.id}) }}" class="btn btn-warning">Supprimer</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

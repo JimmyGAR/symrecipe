@@ -84,7 +84,6 @@ final class IngredientController extends AbstractController
 
     #[Route('/ingredient/remove/{id}', 'ingredient_remove', methods: ['GET'])]
     public function remove(
-        Request $request,
         EntityManagerInterface $manager,
         Ingredient $ingredient
     ): Response {
