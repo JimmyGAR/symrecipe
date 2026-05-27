@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Ingredient;
+use App\Entity\Recipe;
 use Faker\Generator;
 use Faker\Factory;
 
@@ -24,6 +25,14 @@ class AppFixtures extends Fixture
             $ingredient->setName($this->faker->word())
                 ->setPrice(mt_rand(1, 199));
             $manager->persist($ingredient);
+        }
+
+        for ($i = 1; $i <= 50; $i++) {
+            $recipe = new Recipe();
+            $recipe->setName($this->faker->word())
+                ->setDescription($this->faker->sentence())
+                ->setIsFavorite($this->faker->numberBetween(0, 1));
+            $manager->persist($recipe);
         }
 
         $manager->flush();

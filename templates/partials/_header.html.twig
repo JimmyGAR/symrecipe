@@ -13,10 +13,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/ingredient">Ingredients</a>
+                    <a class="nav-link" href="{{ path('app_ingredient') }}">Ingredients</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/ingredient/nouveau">New</a>
+                    <a class="nav-link" href="{{ path('ingredient_new')}}">New ingredient</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_recipe') }}">Recipes</a>
                 </li>
             </ul>
         </div>
