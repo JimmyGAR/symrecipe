@@ -4,6 +4,11 @@
 
 {% block body %}
 <div class="container mt-4">
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-dismissible alert-success mt-4">
+        {{ message }}
+    </div>
+    {% endfor %}
     <h1>Mes recettes</h1>
 
     {% if not recipes.items is same as ([]) %}
@@ -34,6 +39,13 @@
                 <td>{{ recipe.price ?? '?'}}</td>
                 <td>{{ recipe.isFavorite ? recipe.isFavorite : '0'}}</td>
                 <td>{{ recipe.createdAt|date('d/m/y') }}</td>
+                <td>
+                    <a href="{{ path('recipe_edit', { id: recipe.id}) }}" class="btn btn-info">Modifier</a>
+                </td>
+                {# <td>
+                    <a href="{{ path('recipe_remove', { id: ingredient.id}) }}"
+                        class="btn btn-warning">Supprimer</a>
+                </td> #}
             </tr>
             {% endfor %}
         </tbody>

@@ -47,10 +47,10 @@ final class RecipeController extends AbstractController
             $manager->persist($recipe);
             $manager->flush();
 
-            // $this->addFlash(
-            //     'success',
-            //     'Vos changements ont été enregistrés !'
-            // );
+            $this->addFlash(
+                'success',
+                'Vos changements ont été enregistrés !'
+            );
 
             return $this->redirectToRoute('app_recipe');
         }
@@ -59,4 +59,48 @@ final class RecipeController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/recipe/edit/{id}', 'recipe_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, EntityManagerInterface $manager, Recipe $recipe): Response
+    {
+        $form = $this->createForm(RecipeType::class, $recipe);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $recipe = $form->getData();
+
+            // dd($recipe);
+
+            $manager->persist($recipe);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Vos changements ont été enregistrés !'
+            );
+
+            return $this->redirectToRoute('app_recipe');
+        }
+
+        return $this->render('pages/recipe/new.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    // #[Route('/ingredient/remove/{id}', 'ingredient_remove', methods: ['GET'])]
+    // public function remove(
+    //     Request $request,
+    //     EntityManagerInterface $manager,
+    //     Ingredient $ingredient
+    // ): Response {
+    //     $manager->remove($ingredient);
+    //     $manager->flush();
+
+    //     $this->addFlash(
+    //         'success',
+    //         "L'ingrédient a été supprimé !"
+    //     );
+
+    //     return $this->redirectToRoute('app_ingredient');
+    // }
 }
